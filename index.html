@@ -57,8 +57,6 @@ body {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Navbar */
-
 .navbar {
     position: fixed;
     top: 0;
@@ -153,8 +151,6 @@ main {
     padding-top: calc(48px + env(safe-area-inset-top, 0));
 }
 
-/* Hero */
-
 .hero-wrapper {
     text-align: center;
     padding: 90px 20px 60px;
@@ -205,9 +201,7 @@ main {
     border-radius: 980px;
     text-decoration: none;
     display: inline-block;
-    transition:
-        background-color 0.2s ease,
-        transform 0.2s ease;
+    transition: background-color 0.2s ease, transform 0.2s ease;
     box-shadow: 0 4px 14px rgba(0, 113, 227, 0.35);
 }
 
@@ -232,8 +226,6 @@ main {
 .button-secondary:hover {
     background: var(--card-hover);
 }
-
-/* Content */
 
 .page-section {
     max-width: 980px;
@@ -293,8 +285,6 @@ main {
     line-height: 1.55;
 }
 
-/* Specifications */
-
 .specs-table {
     width: 100%;
     border-collapse: collapse;
@@ -323,8 +313,6 @@ main {
 .specs-table td:last-child {
     font-weight: 500;
 }
-
-/* FAQ */
 
 .faq-stack {
     display: flex;
@@ -382,8 +370,6 @@ main {
     display: block;
 }
 
-/* Download */
-
 .download-section {
     text-align: center;
     background: var(--card-bg);
@@ -414,8 +400,6 @@ main {
     margin: 0 auto 40px;
 }
 
-/* Footer */
-
 footer {
     border-top: 1px solid var(--border-color);
     padding: 36px 20px calc(30px + env(safe-area-inset-bottom, 0));
@@ -435,7 +419,14 @@ footer {
     font-weight: 500;
 }
 
-/* Mobile */
+[dir="rtl"] .faq-trigger {
+    text-align: right;
+}
+
+[dir="rtl"] .specs-table td:first-child {
+    padding-right: 0;
+    padding-left: 14px;
+}
 
 @media (max-width: 768px) {
     .navbar-content {
@@ -496,16 +487,10 @@ footer {
 
 <nav class="navbar">
     <div class="navbar-content">
-
         <a href="#" class="nav-title">Siri</a>
 
         <div class="nav-actions">
-
-            <select
-                class="lang-picker"
-                id="langSelect"
-                onchange="switchLanguage(this.value)"
-            >
+            <select class="lang-picker" id="langSelect" onchange="switchLanguage(this.value)">
                 <option value="ru">RU</option>
                 <option value="en">EN</option>
                 <option value="de">DE</option>
@@ -524,36 +509,15 @@ footer {
                 <option value="zh-CN">ZH</option>
             </select>
 
-            <button
-                class="theme-button"
-                onclick="toggleColorTheme()"
-                title="Theme"
-                aria-label="Change theme"
-            >
-                <svg
-                    id="themeSvg"
-                    width="14"
-                    height="14"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                >
+            <button class="theme-button" onclick="toggleColorTheme()" title="Theme" aria-label="Change theme">
+                <svg id="themeSvg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
                 </svg>
             </button>
 
-            <a
-                href="Siri.apk"
-                download="Siri.apk"
-                class="nav-download-btn"
-                data-i18n="dl_btn"
-            >
+            <a href="Siri.apk" download="Siri.apk" class="nav-download-btn" data-i18n="dl_btn">
                 Скачать
             </a>
-
         </div>
     </div>
 </nav>
@@ -561,187 +525,110 @@ footer {
 <main>
 
     <section class="hero-wrapper">
-
-        <div class="hero-eyebrow" data-i18n="hero_tag">
-            Siri for Android
-        </div>
+        <div class="hero-eyebrow" data-i18n="hero_tag">Siri for Android</div>
 
         <h1 class="hero-headline" data-i18n="hero_h1">
             Siri. Теперь на Android.
         </h1>
 
         <p class="hero-subhead" data-i18n="hero_sub">
-            Персональный помощник с нативным управлением устройством,
-            запуском локальных моделей прямо на смартфоне и созданием
-            изображений.
+            Персональный помощник с нативным управлением устройством, запуском локальных моделей прямо на смартфоне и созданием изображений.
         </p>
 
         <div class="hero-cta-group">
-
-            <a
-                href="Siri.apk"
-                download="Siri.apk"
-                class="button-primary"
-                data-i18n="btn_dl_apk"
-            >
+            <a href="Siri.apk" download="Siri.apk" class="button-primary" data-i18n="btn_dl_apk">
                 Скачать APK
             </a>
 
-            <a
-                href="#faq"
-                class="button-secondary"
-                data-i18n="btn_faq"
-            >
+            <a href="#faq" class="button-secondary" data-i18n="btn_faq">
                 Частые вопросы
             </a>
-
         </div>
-
     </section>
 
     <div class="section-divider"></div>
 
     <section class="page-section" id="features">
-
-        <div class="section-eyebrow" data-i18n="feat_tag">
-            Возможности
-        </div>
+        <div class="section-eyebrow" data-i18n="feat_tag">Возможности</div>
 
         <h2 class="section-heading" data-i18n="feat_heading">
             Полный контроль и приватность
         </h2>
 
         <div class="bento-grid-2">
-
             <div class="card col-span-2">
-                <h3 data-i18n="f1_title">
-                    Локальные нейросети прямо на устройстве
-                </h3>
-
+                <h3 data-i18n="f1_title">Локальные нейросети прямо на устройстве</h3>
                 <p data-i18n="f1_desc">
-                    Siri поддерживает запуск локальных языковых моделей
-                    On-Device. Обработка запросов происходит на процессоре
-                    вашего телефона без интернета и без передачи данных
-                    в облако.
+                    Siri поддерживает запуск локальных языковых моделей On-Device. Обработка запросов происходит на процессоре вашего телефона без интернета и без передачи данных в облако.
                 </p>
             </div>
 
             <div class="card">
-                <h3 data-i18n="f2_title">
-                    Работа без интернета
-                </h3>
-
+                <h3 data-i18n="f2_title">Работа без интернета</h3>
                 <p data-i18n="f2_desc">
-                    Локальные возможности Siri продолжают работать даже
-                    при отсутствии подключения к сети.
+                    Локальные возможности Siri продолжают работать даже при отсутствии подключения к сети.
                 </p>
             </div>
 
             <div class="card">
-                <h3 data-i18n="f3_title">
-                    Генерация изображений
-                </h3>
-
+                <h3 data-i18n="f3_title">Генерация изображений</h3>
                 <p data-i18n="f3_desc">
-                    Создавайте изображения по текстовому описанию или
-                    через команду /image прямо в диалоге.
+                    Создавайте изображения по текстовому описанию или через команду /image прямо в диалоге.
                 </p>
             </div>
 
             <div class="card col-span-2">
-                <h3 data-i18n="f4_title">
-                    История диалогов и умный поиск
-                </h3>
-
+                <h3 data-i18n="f4_title">История диалогов и умный поиск</h3>
                 <p data-i18n="f4_desc">
-                    Удобная организация разговоров, группировка по датам,
-                    переключение между видами и быстрый поиск по истории.
+                    Удобная организация разговоров, группировка по датам, переключение между видами и быстрый поиск по истории.
                 </p>
             </div>
-
         </div>
-
     </section>
 
     <div class="section-divider"></div>
 
     <section class="page-section" id="specs">
-
-        <div class="section-eyebrow" data-i18n="spec_tag">
-            Характеристики
-        </div>
+        <div class="section-eyebrow" data-i18n="spec_tag">Характеристики</div>
 
         <h2 class="section-heading" data-i18n="spec_heading">
             Требования к телефону
         </h2>
 
         <div class="card">
-
             <table class="specs-table">
-
                 <tr>
-                    <td data-i18n="sp_os_k">
-                        Операционная система
-                    </td>
-
-                    <td data-i18n="sp_os_v">
-                        Android 10 и выше (API 29+)
-                    </td>
+                    <td data-i18n="sp_os_k">Операционная система</td>
+                    <td data-i18n="sp_os_v">Android 10 и выше (API 29+)</td>
                 </tr>
 
                 <tr>
-                    <td data-i18n="sp_ram_k">
-                        Оперативная память
-                    </td>
-
-                    <td data-i18n="sp_ram_v">
-                        3 ГБ (4+ ГБ для локальных нейросетей)
-                    </td>
+                    <td data-i18n="sp_ram_k">Оперативная память</td>
+                    <td data-i18n="sp_ram_v">3 ГБ (4+ ГБ для локальных нейросетей)</td>
                 </tr>
 
                 <tr>
-                    <td data-i18n="sp_local_k">
-                        Локальные ИИ модели
-                    </td>
-
-                    <td data-i18n="sp_local_v">
-                        Поддерживаются
-                    </td>
+                    <td data-i18n="sp_local_k">Локальные ИИ модели</td>
+                    <td data-i18n="sp_local_v">Поддерживаются</td>
                 </tr>
 
                 <tr>
-                    <td data-i18n="sp_net_k">
-                        Интернет
-                    </td>
-
-                    <td data-i18n="sp_net_v">
-                        Нужен для облачных API и генерации изображений
-                    </td>
+                    <td data-i18n="sp_net_k">Интернет</td>
+                    <td data-i18n="sp_net_v">Нужен для облачных API и генерации изображений</td>
                 </tr>
 
                 <tr>
-                    <td data-i18n="sp_api_k">
-                        API ключ
-                    </td>
-
-                    <td data-i18n="sp_api_v">
-                        OpenAI / Gemini / Groq совместимый, опционально
-                    </td>
+                    <td data-i18n="sp_api_k">API ключ</td>
+                    <td data-i18n="sp_api_v">OpenAI / Gemini / Groq совместимый, опционально</td>
                 </tr>
-
             </table>
-
         </div>
-
     </section>
 
     <div class="section-divider"></div>
 
     <section class="page-section" id="faq">
-
-        <div class="section-eyebrow">
-            FAQ
-        </div>
+        <div class="section-eyebrow">FAQ</div>
 
         <h2 class="section-heading" data-i18n="faq_heading">
             Часто задаваемые вопросы
@@ -750,181 +637,78 @@ footer {
         <div class="faq-stack">
 
             <div class="faq-card">
-
-                <button
-                    class="faq-trigger"
-                    onclick="toggleFaqCard(this)"
-                >
-                    <span data-i18n="q0_t">
-                        Как работают локальные ИИ модели без интернета?
-                    </span>
-
-                    <svg
-                        class="faq-arrow"
-                        width="16"
-                        height="16"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                    >
+                <button class="faq-trigger" onclick="toggleFaqCard(this)">
+                    <span data-i18n="q0_t">Как работают локальные ИИ модели без интернета?</span>
+                    <svg class="faq-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <polyline points="6 9 12 15 18 9"/>
                     </svg>
                 </button>
 
                 <div class="faq-body" data-i18n="q0_a">
-                    Siri поддерживает загрузку компактных языковых моделей
-                    непосредственно на устройство. Обработка происходит
-                    локально без подключения к сети.
+                    Siri поддерживает загрузку компактных языковых моделей непосредственно на устройство. Обработка происходит локально без подключения к сети.
                 </div>
-
             </div>
 
             <div class="faq-card">
-
-                <button
-                    class="faq-trigger"
-                    onclick="toggleFaqCard(this)"
-                >
-                    <span data-i18n="q1_t">
-                        Как назначить Siri помощником по умолчанию?
-                    </span>
-
-                    <svg
-                        class="faq-arrow"
-                        width="16"
-                        height="16"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                    >
+                <button class="faq-trigger" onclick="toggleFaqCard(this)">
+                    <span data-i18n="q1_t">Как назначить Siri помощником по умолчанию?</span>
+                    <svg class="faq-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <polyline points="6 9 12 15 18 9"/>
                     </svg>
                 </button>
 
                 <div class="faq-body" data-i18n="q1_a">
-                    Перейдите в Настройки Android → Приложения →
-                    Приложения по умолчанию → Цифровой помощник и
-                    выберите Siri.
+                    Перейдите в Настройки Android → Приложения → Приложения по умолчанию → Цифровой помощник и выберите Siri.
                 </div>
-
             </div>
 
             <div class="faq-card">
-
-                <button
-                    class="faq-trigger"
-                    onclick="toggleFaqCard(this)"
-                >
-                    <span data-i18n="q2_t">
-                        Работает ли Siri без интернета?
-                    </span>
-
-                    <svg
-                        class="faq-arrow"
-                        width="16"
-                        height="16"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                    >
+                <button class="faq-trigger" onclick="toggleFaqCard(this)">
+                    <span data-i18n="q2_t">Работает ли Siri без интернета?</span>
+                    <svg class="faq-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <polyline points="6 9 12 15 18 9"/>
                     </svg>
                 </button>
 
                 <div class="faq-body" data-i18n="q2_a">
-                    Да. При использовании локальной модели обработка
-                    запросов выполняется непосредственно на смартфоне.
+                    Да. При использовании локальной модели обработка запросов выполняется непосредственно на смартфоне.
                 </div>
-
             </div>
 
             <div class="faq-card">
-
-                <button
-                    class="faq-trigger"
-                    onclick="toggleFaqCard(this)"
-                >
-                    <span data-i18n="q3_t">
-                        Где взять API ключ для облачных моделей?
-                    </span>
-
-                    <svg
-                        class="faq-arrow"
-                        width="16"
-                        height="16"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                    >
+                <button class="faq-trigger" onclick="toggleFaqCard(this)">
+                    <span data-i18n="q3_t">Где взять API ключ для облачных моделей?</span>
+                    <svg class="faq-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <polyline points="6 9 12 15 18 9"/>
                     </svg>
                 </button>
 
                 <div class="faq-body" data-i18n="q3_a">
-                    Можно использовать совместимый ключ OpenAI, Gemini,
-                    Groq или OpenRouter. Ключ и адрес API указываются
-                    в настройках приложения.
+                    Можно использовать совместимый ключ OpenAI, Gemini, Groq или OpenRouter. Ключ и адрес API указываются в настройках приложения.
                 </div>
-
             </div>
 
             <div class="faq-card">
-
-                <button
-                    class="faq-trigger"
-                    onclick="toggleFaqCard(this)"
-                >
-                    <span data-i18n="q4_t">
-                        Как создать изображение?
-                    </span>
-
-                    <svg
-                        class="faq-arrow"
-                        width="16"
-                        height="16"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                    >
+                <button class="faq-trigger" onclick="toggleFaqCard(this)">
+                    <span data-i18n="q4_t">Как создать изображение?</span>
+                    <svg class="faq-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <polyline points="6 9 12 15 18 9"/>
                     </svg>
                 </button>
 
                 <div class="faq-body" data-i18n="q4_a">
-                    Введите описание изображения или используйте
-                    команду /image в диалоге.
+                    Введите описание изображения или используйте команду /image в диалоге.
                 </div>
-
             </div>
 
         </div>
-
     </section>
 
     <div class="section-divider"></div>
 
     <section class="page-section">
-
         <div class="download-section">
-
-            <h2 data-i18n="cta_title">
-                Установите Siri на Android
-            </h2>
+            <h2 data-i18n="cta_title">Установите Siri на Android</h2>
 
             <p data-i18n="cta_desc">
                 Скачайте установочный APK-пакет.
@@ -937,281 +721,770 @@ footer {
                 style="font-size: 17px; padding: 14px 36px;"
                 data-i18n="btn_dl_apk"
             >
-                Скачать Siri.apk
+                Скачать APK
             </a>
-
         </div>
-
     </section>
 
 </main>
 
 <footer>
-
-    <div>
-        © 2026 Siri for Android
-    </div>
+    <div>© 2026 Siri for Android</div>
 
     <div class="footer-credit">
         Made with ❤️ by
-        <a
-            href="https://t.me/Beketov_samrat"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
+        <a href="https://t.me/Beketov_samrat" target="_blank" rel="noopener noreferrer">
             @Beketov_samrat
         </a>,
         part of Magical Team
     </div>
-
 </footer>
 
 <script>
-
 const translations = {
 
     ru: {
         dl_btn: "Скачать",
-
         hero_tag: "Siri for Android",
         hero_h1: "Siri. Теперь на Android.",
-        hero_sub:
-            "Персональный помощник с нативным управлением устройством, запуском локальных моделей прямо на смартфоне и созданием изображений.",
-
+        hero_sub: "Персональный помощник с нативным управлением устройством, запуском локальных моделей прямо на смартфоне и созданием изображений.",
         btn_dl_apk: "Скачать APK",
         btn_faq: "Частые вопросы",
-
         feat_tag: "Возможности",
         feat_heading: "Полный контроль и приватность",
-
         f1_title: "Локальные нейросети прямо на устройстве",
-        f1_desc:
-            "Siri поддерживает запуск локальных языковых моделей On-Device. Обработка запросов происходит на процессоре вашего телефона без интернета и без передачи данных в облако.",
-
+        f1_desc: "Siri поддерживает запуск локальных языковых моделей On-Device. Обработка запросов происходит на процессоре вашего телефона без интернета и без передачи данных в облако.",
         f2_title: "Работа без интернета",
-        f2_desc:
-            "Локальные возможности Siri продолжают работать даже при отсутствии подключения к сети.",
-
+        f2_desc: "Локальные возможности Siri продолжают работать даже при отсутствии подключения к сети.",
         f3_title: "Генерация изображений",
-        f3_desc:
-            "Создавайте изображения по текстовому описанию или через команду /image прямо в диалоге.",
-
+        f3_desc: "Создавайте изображения по текстовому описанию или через команду /image прямо в диалоге.",
         f4_title: "История диалогов и умный поиск",
-        f4_desc:
-            "Удобная организация разговоров, группировка по датам, переключение между видами и быстрый поиск по истории.",
-
+        f4_desc: "Удобная организация разговоров, группировка по датам, переключение между видами и быстрый поиск по истории.",
         spec_tag: "Характеристики",
         spec_heading: "Требования к телефону",
-
         sp_os_k: "Операционная система",
         sp_os_v: "Android 10 и выше (API 29+)",
-
         sp_ram_k: "Оперативная память",
         sp_ram_v: "3 ГБ (4+ ГБ для локальных нейросетей)",
-
         sp_local_k: "Локальные ИИ модели",
         sp_local_v: "Поддерживаются",
-
         sp_net_k: "Интернет",
-        sp_net_v:
-            "Нужен для облачных API и генерации изображений",
-
+        sp_net_v: "Нужен для облачных API и генерации изображений",
         sp_api_k: "API ключ",
-        sp_api_v:
-            "OpenAI / Gemini / Groq совместимый, опционально",
-
+        sp_api_v: "OpenAI / Gemini / Groq совместимый, опционально",
         faq_heading: "Часто задаваемые вопросы",
-
-        q0_t:
-            "Как работают локальные ИИ модели без интернета?",
-
-        q0_a:
-            "Siri поддерживает загрузку компактных языковых моделей непосредственно на устройство. Обработка происходит локально без подключения к сети.",
-
-        q1_t:
-            "Как назначить Siri помощником по умолчанию?",
-
-        q1_a:
-            "Перейдите в Настройки Android → Приложения → Приложения по умолчанию → Цифровой помощник и выберите Siri.",
-
-        q2_t:
-            "Работает ли Siri без интернета?",
-
-        q2_a:
-            "Да. При использовании локальной модели обработка запросов выполняется непосредственно на смартфоне.",
-
-        q3_t:
-            "Где взять API ключ для облачных моделей?",
-
-        q3_a:
-            "Можно использовать совместимый ключ OpenAI, Gemini, Groq или OpenRouter. Ключ и адрес API указываются в настройках приложения.",
-
-        q4_t:
-            "Как создать изображение?",
-
-        q4_a:
-            "Введите описание изображения или используйте команду /image в диалоге.",
-
-        cta_title:
-            "Установите Siri на Android",
-
-        cta_desc:
-            "Скачайте установочный APK-пакет."
+        q0_t: "Как работают локальные ИИ модели без интернета?",
+        q0_a: "Siri поддерживает загрузку компактных языковых моделей непосредственно на устройство. Обработка происходит локально без подключения к сети.",
+        q1_t: "Как назначить Siri помощником по умолчанию?",
+        q1_a: "Перейдите в Настройки Android → Приложения → Приложения по умолчанию → Цифровой помощник и выберите Siri.",
+        q2_t: "Работает ли Siri без интернета?",
+        q2_a: "Да. При использовании локальной модели обработка запросов выполняется непосредственно на смартфоне.",
+        q3_t: "Где взять API ключ для облачных моделей?",
+        q3_a: "Можно использовать совместимый ключ OpenAI, Gemini, Groq или OpenRouter. Ключ и адрес API указываются в настройках приложения.",
+        q4_t: "Как создать изображение?",
+        q4_a: "Введите описание изображения или используйте команду /image в диалоге.",
+        cta_title: "Установите Siri на Android",
+        cta_desc: "Скачайте установочный APK-пакет."
     },
 
     en: {
         dl_btn: "Download",
-
         hero_tag: "Siri for Android",
         hero_h1: "Siri. Now on Android.",
-        hero_sub:
-            "A personal assistant with native device integration, on-device AI models and image generation.",
-
+        hero_sub: "A personal assistant with native device integration, on-device AI models and image generation.",
         btn_dl_apk: "Download APK",
         btn_faq: "FAQ",
-
         feat_tag: "Features",
         feat_heading: "Control and Privacy",
-
         f1_title: "On-Device AI Models",
-        f1_desc:
-            "Siri supports local language models running directly on your phone without sending data to the cloud.",
-
+        f1_desc: "Siri supports local language models running directly on your phone without sending your data to the cloud.",
         f2_title: "Works Offline",
-        f2_desc:
-            "Local Siri features remain available even without an internet connection.",
-
+        f2_desc: "Local Siri features remain available even without an internet connection.",
         f3_title: "Image Generation",
-        f3_desc:
-            "Create images from text descriptions or use the /image command directly in chat.",
-
-        f4_title: "Conversation History & Search",
-        f4_desc:
-            "Organize conversations by date, switch between views and quickly search your history.",
-
+        f3_desc: "Create images from text descriptions or use the /image command directly in chat.",
+        f4_title: "Conversation History & Smart Search",
+        f4_desc: "Organize conversations by date, switch between views and quickly search your history.",
         spec_tag: "Specifications",
         spec_heading: "Phone Requirements",
-
         sp_os_k: "Operating System",
         sp_os_v: "Android 10 or later (API 29+)",
-
         sp_ram_k: "System RAM",
         sp_ram_v: "3 GB (4+ GB for local AI models)",
-
         sp_local_k: "Local AI Models",
         sp_local_v: "Supported",
-
         sp_net_k: "Internet",
-        sp_net_v:
-            "Required for cloud APIs and image generation",
-
+        sp_net_v: "Required for cloud APIs and image generation",
         sp_api_k: "API Key",
-        sp_api_v:
-            "OpenAI / Gemini / Groq compatible, optional",
-
+        sp_api_v: "OpenAI / Gemini / Groq compatible, optional",
         faq_heading: "Frequently Asked Questions",
+        q0_t: "How do local AI models work offline?",
+        q0_a: "Siri can load compact language models directly onto your device and process requests locally without an internet connection.",
+        q1_t: "How do I set Siri as the default assistant?",
+        q1_a: "Go to Android Settings → Apps → Default Apps → Digital Assistant and select Siri.",
+        q2_t: "Does Siri work without internet?",
+        q2_a: "Yes. When using a local model, requests are processed directly on your smartphone.",
+        q3_t: "Where can I get an API key?",
+        q3_a: "You can use a compatible OpenAI, Gemini, Groq or OpenRouter API key and configure it in the app settings.",
+        q4_t: "How do I create an image?",
+        q4_a: "Enter an image description or use the /image command in chat.",
+        cta_title: "Get Siri on Android",
+        cta_desc: "Download the APK package."
+    },
 
-        q0_t:
-            "How do local AI models work offline?",
+    de: {
+        dl_btn: "Herunterladen",
+        hero_tag: "Siri für Android",
+        hero_h1: "Siri. Jetzt auf Android.",
+        hero_sub: "Ein persönlicher Assistent mit nativer Geräteintegration, lokalen KI-Modellen direkt auf dem Smartphone und Bildgenerierung.",
+        btn_dl_apk: "APK herunterladen",
+        btn_faq: "Häufige Fragen",
+        feat_tag: "Funktionen",
+        feat_heading: "Kontrolle und Datenschutz",
+        f1_title: "Lokale KI-Modelle direkt auf dem Gerät",
+        f1_desc: "Siri unterstützt lokale Sprachmodelle, die direkt auf deinem Smartphone ausgeführt werden, ohne deine Daten an die Cloud zu senden.",
+        f2_title: "Funktioniert offline",
+        f2_desc: "Lokale Siri-Funktionen bleiben auch ohne Internetverbindung verfügbar.",
+        f3_title: "Bildgenerierung",
+        f3_desc: "Erstelle Bilder aus Textbeschreibungen oder verwende den Befehl /image direkt im Chat.",
+        f4_title: "Verlauf und intelligente Suche",
+        f4_desc: "Organisiere Unterhaltungen nach Datum, wechsle zwischen Ansichten und durchsuche schnell deinen Verlauf.",
+        spec_tag: "Spezifikationen",
+        spec_heading: "Anforderungen an das Smartphone",
+        sp_os_k: "Betriebssystem",
+        sp_os_v: "Android 10 oder neuer (API 29+)",
+        sp_ram_k: "Arbeitsspeicher",
+        sp_ram_v: "3 GB (4+ GB für lokale KI-Modelle)",
+        sp_local_k: "Lokale KI-Modelle",
+        sp_local_v: "Unterstützt",
+        sp_net_k: "Internet",
+        sp_net_v: "Für Cloud-APIs und Bildgenerierung erforderlich",
+        sp_api_k: "API-Schlüssel",
+        sp_api_v: "OpenAI / Gemini / Groq kompatibel, optional",
+        faq_heading: "Häufig gestellte Fragen",
+        q0_t: "Wie funktionieren lokale KI-Modelle ohne Internet?",
+        q0_a: "Siri kann kompakte Sprachmodelle direkt auf das Gerät laden und Anfragen lokal ohne Internetverbindung verarbeiten.",
+        q1_t: "Wie stelle ich Siri als Standardassistenten ein?",
+        q1_a: "Öffne Android-Einstellungen → Apps → Standard-Apps → Digitaler Assistent und wähle Siri.",
+        q2_t: "Funktioniert Siri ohne Internet?",
+        q2_a: "Ja. Bei Verwendung eines lokalen Modells werden Anfragen direkt auf dem Smartphone verarbeitet.",
+        q3_t: "Wo bekomme ich einen API-Schlüssel?",
+        q3_a: "Du kannst einen kompatiblen OpenAI-, Gemini-, Groq- oder OpenRouter-API-Schlüssel verwenden und ihn in den App-Einstellungen eintragen.",
+        q4_t: "Wie erstelle ich ein Bild?",
+        q4_a: "Gib eine Bildbeschreibung ein oder verwende den Befehl /image im Chat.",
+        cta_title: "Siri auf Android installieren",
+        cta_desc: "Lade das APK-Paket herunter."
+    },
 
-        q0_a:
-            "Siri can load compact language models directly onto your device and process requests locally without an internet connection.",
+    fr: {
+        dl_btn: "Télécharger",
+        hero_tag: "Siri pour Android",
+        hero_h1: "Siri. Maintenant sur Android.",
+        hero_sub: "Un assistant personnel avec intégration native à l’appareil, modèles d’IA locaux directement sur le smartphone et génération d’images.",
+        btn_dl_apk: "Télécharger l’APK",
+        btn_faq: "Questions fréquentes",
+        feat_tag: "Fonctionnalités",
+        feat_heading: "Contrôle et confidentialité",
+        f1_title: "Modèles d’IA locaux sur l’appareil",
+        f1_desc: "Siri prend en charge des modèles de langage exécutés directement sur votre téléphone, sans envoyer vos données vers le cloud.",
+        f2_title: "Fonctionne hors ligne",
+        f2_desc: "Les fonctions locales de Siri restent disponibles même sans connexion Internet.",
+        f3_title: "Génération d’images",
+        f3_desc: "Créez des images à partir d’une description textuelle ou utilisez la commande /image directement dans le chat.",
+        f4_title: "Historique et recherche intelligente",
+        f4_desc: "Organisez les conversations par date, changez de vue et recherchez rapidement dans votre historique.",
+        spec_tag: "Caractéristiques",
+        spec_heading: "Configuration requise",
+        sp_os_k: "Système d’exploitation",
+        sp_os_v: "Android 10 ou version ultérieure (API 29+)",
+        sp_ram_k: "Mémoire RAM",
+        sp_ram_v: "3 Go (4+ Go pour les modèles d’IA locaux)",
+        sp_local_k: "Modèles d’IA locaux",
+        sp_local_v: "Pris en charge",
+        sp_net_k: "Internet",
+        sp_net_v: "Nécessaire pour les API cloud et la génération d’images",
+        sp_api_k: "Clé API",
+        sp_api_v: "Compatible OpenAI / Gemini / Groq, facultative",
+        faq_heading: "Questions fréquemment posées",
+        q0_t: "Comment fonctionnent les modèles d’IA locaux sans Internet ?",
+        q0_a: "Siri peut charger des modèles de langage compacts directement sur votre appareil et traiter les requêtes localement sans connexion Internet.",
+        q1_t: "Comment définir Siri comme assistant par défaut ?",
+        q1_a: "Ouvrez Paramètres Android → Applications → Applications par défaut → Assistant numérique puis sélectionnez Siri.",
+        q2_t: "Siri fonctionne-t-il sans Internet ?",
+        q2_a: "Oui. Avec un modèle local, les requêtes sont traitées directement sur votre smartphone.",
+        q3_t: "Où obtenir une clé API ?",
+        q3_a: "Vous pouvez utiliser une clé API compatible OpenAI, Gemini, Groq ou OpenRouter et la configurer dans les paramètres de l’application.",
+        q4_t: "Comment créer une image ?",
+        q4_a: "Entrez une description d’image ou utilisez la commande /image dans le chat.",
+        cta_title: "Installer Siri sur Android",
+        cta_desc: "Téléchargez le package APK."
+    },
 
-        q1_t:
-            "How do I set Siri as the default assistant?",
+    es: {
+        dl_btn: "Descargar",
+        hero_tag: "Siri para Android",
+        hero_h1: "Siri. Ahora en Android.",
+        hero_sub: "Un asistente personal con integración nativa con el dispositivo, modelos de IA locales directamente en el teléfono y generación de imágenes.",
+        btn_dl_apk: "Descargar APK",
+        btn_faq: "Preguntas frecuentes",
+        feat_tag: "Funciones",
+        feat_heading: "Control y privacidad",
+        f1_title: "Modelos de IA locales en el dispositivo",
+        f1_desc: "Siri admite modelos de lenguaje locales que se ejecutan directamente en tu teléfono sin enviar tus datos a la nube.",
+        f2_title: "Funciona sin conexión",
+        f2_desc: "Las funciones locales de Siri siguen disponibles incluso sin conexión a Internet.",
+        f3_title: "Generación de imágenes",
+        f3_desc: "Crea imágenes a partir de descripciones de texto o utiliza el comando /image directamente en el chat.",
+        f4_title: "Historial y búsqueda inteligente",
+        f4_desc: "Organiza conversaciones por fecha, cambia entre vistas y busca rápidamente en tu historial.",
+        spec_tag: "Especificaciones",
+        spec_heading: "Requisitos del teléfono",
+        sp_os_k: "Sistema operativo",
+        sp_os_v: "Android 10 o posterior (API 29+)",
+        sp_ram_k: "Memoria RAM",
+        sp_ram_v: "3 GB (4+ GB para modelos de IA locales)",
+        sp_local_k: "Modelos de IA locales",
+        sp_local_v: "Compatibles",
+        sp_net_k: "Internet",
+        sp_net_v: "Necesario para APIs en la nube y generación de imágenes",
+        sp_api_k: "Clave API",
+        sp_api_v: "Compatible con OpenAI / Gemini / Groq, opcional",
+        faq_heading: "Preguntas frecuentes",
+        q0_t: "¿Cómo funcionan los modelos de IA locales sin Internet?",
+        q0_a: "Siri puede cargar modelos de lenguaje compactos directamente en tu dispositivo y procesar solicitudes localmente sin conexión a Internet.",
+        q1_t: "¿Cómo configuro Siri como asistente predeterminado?",
+        q1_a: "Ve a Ajustes de Android → Aplicaciones → Aplicaciones predeterminadas → Asistente digital y selecciona Siri.",
+        q2_t: "¿Siri funciona sin Internet?",
+        q2_a: "Sí. Al usar un modelo local, las solicitudes se procesan directamente en tu teléfono.",
+        q3_t: "¿Dónde consigo una clave API?",
+        q3_a: "Puedes usar una clave API compatible con OpenAI, Gemini, Groq u OpenRouter y configurarla en los ajustes de la aplicación.",
+        q4_t: "¿Cómo creo una imagen?",
+        q4_a: "Escribe una descripción de la imagen o utiliza el comando /image en el chat.",
+        cta_title: "Instala Siri en Android",
+        cta_desc: "Descarga el paquete APK."
+    },
 
-        q1_a:
-            "Go to Android Settings → Apps → Default Apps → Digital Assistant and select Siri.",
+    it: {
+        dl_btn: "Scarica",
+        hero_tag: "Siri per Android",
+        hero_h1: "Siri. Ora su Android.",
+        hero_sub: "Un assistente personale con integrazione nativa del dispositivo, modelli IA locali direttamente sullo smartphone e generazione di immagini.",
+        btn_dl_apk: "Scarica APK",
+        btn_faq: "Domande frequenti",
+        feat_tag: "Funzionalità",
+        feat_heading: "Controllo e privacy",
+        f1_title: "Modelli IA locali sul dispositivo",
+        f1_desc: "Siri supporta modelli linguistici locali eseguiti direttamente sul telefono senza inviare i dati al cloud.",
+        f2_title: "Funziona offline",
+        f2_desc: "Le funzioni locali di Siri rimangono disponibili anche senza connessione Internet.",
+        f3_title: "Generazione di immagini",
+        f3_desc: "Crea immagini da descrizioni testuali oppure usa il comando /image direttamente nella chat.",
+        f4_title: "Cronologia e ricerca intelligente",
+        f4_desc: "Organizza le conversazioni per data, cambia visualizzazione e cerca rapidamente nella cronologia.",
+        spec_tag: "Specifiche",
+        spec_heading: "Requisiti del telefono",
+        sp_os_k: "Sistema operativo",
+        sp_os_v: "Android 10 o successivo (API 29+)",
+        sp_ram_k: "Memoria RAM",
+        sp_ram_v: "3 GB (4+ GB per modelli IA locali)",
+        sp_local_k: "Modelli IA locali",
+        sp_local_v: "Supportati",
+        sp_net_k: "Internet",
+        sp_net_v: "Necessario per API cloud e generazione di immagini",
+        sp_api_k: "Chiave API",
+        sp_api_v: "Compatibile OpenAI / Gemini / Groq, opzionale",
+        faq_heading: "Domande frequenti",
+        q0_t: "Come funzionano i modelli IA locali senza Internet?",
+        q0_a: "Siri può caricare modelli linguistici compatti direttamente sul dispositivo ed elaborare le richieste localmente senza connessione Internet.",
+        q1_t: "Come imposto Siri come assistente predefinito?",
+        q1_a: "Vai in Impostazioni Android → App → App predefinite → Assistente digitale e seleziona Siri.",
+        q2_t: "Siri funziona senza Internet?",
+        q2_a: "Sì. Utilizzando un modello locale, le richieste vengono elaborate direttamente sullo smartphone.",
+        q3_t: "Dove posso ottenere una chiave API?",
+        q3_a: "Puoi usare una chiave API compatibile con OpenAI, Gemini, Groq o OpenRouter e configurarla nelle impostazioni dell’app.",
+        q4_t: "Come creo un’immagine?",
+        q4_a: "Inserisci una descrizione dell’immagine o usa il comando /image nella chat.",
+        cta_title: "Installa Siri su Android",
+        cta_desc: "Scarica il pacchetto APK."
+    },
 
-        q2_t:
-            "Does Siri work without internet?",
+    pt: {
+        dl_btn: "Baixar",
+        hero_tag: "Siri para Android",
+        hero_h1: "Siri. Agora no Android.",
+        hero_sub: "Um assistente pessoal com integração nativa ao dispositivo, modelos de IA locais diretamente no smartphone e geração de imagens.",
+        btn_dl_apk: "Baixar APK",
+        btn_faq: "Perguntas frequentes",
+        feat_tag: "Recursos",
+        feat_heading: "Controle e privacidade",
+        f1_title: "Modelos de IA locais no dispositivo",
+        f1_desc: "A Siri oferece suporte a modelos de linguagem locais executados diretamente no telefone, sem enviar seus dados para a nuvem.",
+        f2_title: "Funciona offline",
+        f2_desc: "Os recursos locais da Siri continuam disponíveis mesmo sem conexão com a Internet.",
+        f3_title: "Geração de imagens",
+        f3_desc: "Crie imagens a partir de descrições de texto ou use o comando /image diretamente no chat.",
+        f4_title: "Histórico e pesquisa inteligente",
+        f4_desc: "Organize conversas por data, alterne entre visualizações e pesquise rapidamente no histórico.",
+        spec_tag: "Especificações",
+        spec_heading: "Requisitos do telefone",
+        sp_os_k: "Sistema operacional",
+        sp_os_v: "Android 10 ou superior (API 29+)",
+        sp_ram_k: "Memória RAM",
+        sp_ram_v: "3 GB (4+ GB para modelos locais de IA)",
+        sp_local_k: "Modelos locais de IA",
+        sp_local_v: "Compatíveis",
+        sp_net_k: "Internet",
+        sp_net_v: "Necessária para APIs em nuvem e geração de imagens",
+        sp_api_k: "Chave API",
+        sp_api_v: "Compatível com OpenAI / Gemini / Groq, opcional",
+        faq_heading: "Perguntas frequentes",
+        q0_t: "Como os modelos locais de IA funcionam sem Internet?",
+        q0_a: "A Siri pode carregar modelos de linguagem compactos diretamente no dispositivo e processar solicitações localmente sem conexão com a Internet.",
+        q1_t: "Como definir a Siri como assistente padrão?",
+        q1_a: "Abra Configurações do Android → Apps → Apps padrão → Assistente digital e selecione Siri.",
+        q2_t: "A Siri funciona sem Internet?",
+        q2_a: "Sim. Ao usar um modelo local, as solicitações são processadas diretamente no smartphone.",
+        q3_t: "Onde consigo uma chave API?",
+        q3_a: "Você pode usar uma chave API compatível com OpenAI, Gemini, Groq ou OpenRouter e configurá-la nas definições do aplicativo.",
+        q4_t: "Como criar uma imagem?",
+        q4_a: "Digite uma descrição da imagem ou use o comando /image no chat.",
+        cta_title: "Instale a Siri no Android",
+        cta_desc: "Baixe o pacote APK."
+    },
 
-        q2_a:
-            "Yes. When using a local model, requests are processed directly on your smartphone.",
+    tr: {
+        dl_btn: "İndir",
+        hero_tag: "Android için Siri",
+        hero_h1: "Siri. Artık Android'de.",
+        hero_sub: "Cihazla doğal entegrasyon, telefonda çalışan yerel yapay zekâ modelleri ve görsel oluşturma özelliklerine sahip kişisel bir asistan.",
+        btn_dl_apk: "APK indir",
+        btn_faq: "Sık sorulanlar",
+        feat_tag: "Özellikler",
+        feat_heading: "Kontrol ve gizlilik",
+        f1_title: "Cihaz üzerinde yerel yapay zekâ modelleri",
+        f1_desc: "Siri, verilerinizi buluta göndermeden doğrudan telefonunuzda çalışan yerel dil modellerini destekler.",
+        f2_title: "Çevrimdışı çalışır",
+        f2_desc: "Siri'nin yerel özellikleri internet bağlantısı olmasa bile kullanılabilir.",
+        f3_title: "Görsel oluşturma",
+        f3_desc: "Metin açıklamalarından görseller oluşturun veya sohbet içinde /image komutunu kullanın.",
+        f4_title: "Sohbet geçmişi ve akıllı arama",
+        f4_desc: "Konuşmaları tarihe göre düzenleyin, görünüm değiştirebilin ve geçmişte hızlıca arama yapın.",
+        spec_tag: "Teknik bilgiler",
+        spec_heading: "Telefon gereksinimleri",
+        sp_os_k: "İşletim sistemi",
+        sp_os_v: "Android 10 veya üzeri (API 29+)",
+        sp_ram_k: "RAM",
+        sp_ram_v: "3 GB (yerel yapay zekâ modelleri için 4+ GB)",
+        sp_local_k: "Yerel yapay zekâ modelleri",
+        sp_local_v: "Desteklenir",
+        sp_net_k: "İnternet",
+        sp_net_v: "Bulut API'leri ve görsel oluşturma için gerekir",
+        sp_api_k: "API anahtarı",
+        sp_api_v: "OpenAI / Gemini / Groq uyumlu, isteğe bağlı",
+        faq_heading: "Sık sorulan sorular",
+        q0_t: "Yerel yapay zekâ modelleri internet olmadan nasıl çalışır?",
+        q0_a: "Siri, kompakt dil modellerini doğrudan cihazınıza yükleyebilir ve istekleri internet bağlantısı olmadan yerel olarak işleyebilir.",
+        q1_t: "Siri'yi varsayılan asistan nasıl yaparım?",
+        q1_a: "Android Ayarları → Uygulamalar → Varsayılan uygulamalar → Dijital asistan bölümüne gidin ve Siri'yi seçin.",
+        q2_t: "Siri internet olmadan çalışır mı?",
+        q2_a: "Evet. Yerel model kullanıldığında istekler doğrudan akıllı telefonunuzda işlenir.",
+        q3_t: "API anahtarını nereden alabilirim?",
+        q3_a: "OpenAI, Gemini, Groq veya OpenRouter ile uyumlu bir API anahtarı kullanabilir ve uygulama ayarlarında yapılandırabilirsiniz.",
+        q4_t: "Nasıl görsel oluşturabilirim?",
+        q4_a: "Bir görsel açıklaması yazın veya sohbette /image komutunu kullanın.",
+        cta_title: "Siri'yi Android'e yükleyin",
+        cta_desc: "APK paketini indirin."
+    },
 
-        q3_t:
-            "Where can I get an API key?",
+    pl: {
+        dl_btn: "Pobierz",
+        hero_tag: "Siri dla Androida",
+        hero_h1: "Siri. Teraz na Androidzie.",
+        hero_sub: "Osobisty asystent z natywną integracją z urządzeniem, lokalnymi modelami AI działającymi na telefonie i generowaniem obrazów.",
+        btn_dl_apk: "Pobierz APK",
+        btn_faq: "FAQ",
+        feat_tag: "Funkcje",
+        feat_heading: "Kontrola i prywatność",
+        f1_title: "Lokalne modele AI na urządzeniu",
+        f1_desc: "Siri obsługuje lokalne modele językowe działające bezpośrednio na telefonie bez wysyłania danych do chmury.",
+        f2_title: "Działa offline",
+        f2_desc: "Lokalne funkcje Siri pozostają dostępne nawet bez połączenia z Internetem.",
+        f3_title: "Generowanie obrazów",
+        f3_desc: "Twórz obrazy na podstawie opisów tekstowych lub użyj polecenia /image bezpośrednio na czacie.",
+        f4_title: "Historia rozmów i inteligentne wyszukiwanie",
+        f4_desc: "Porządkuj rozmowy według daty, przełączaj widoki i szybko przeszukuj historię.",
+        spec_tag: "Specyfikacja",
+        spec_heading: "Wymagania telefonu",
+        sp_os_k: "System operacyjny",
+        sp_os_v: "Android 10 lub nowszy (API 29+)",
+        sp_ram_k: "Pamięć RAM",
+        sp_ram_v: "3 GB (4+ GB dla lokalnych modeli AI)",
+        sp_local_k: "Lokalne modele AI",
+        sp_local_v: "Obsługiwane",
+        sp_net_k: "Internet",
+        sp_net_v: "Wymagany dla API chmurowych i generowania obrazów",
+        sp_api_k: "Klucz API",
+        sp_api_v: "Zgodny z OpenAI / Gemini / Groq, opcjonalny",
+        faq_heading: "Najczęściej zadawane pytania",
+        q0_t: "Jak lokalne modele AI działają bez Internetu?",
+        q0_a: "Siri może ładować kompaktowe modele językowe bezpośrednio na urządzenie i przetwarzać zapytania lokalnie bez połączenia z Internetem.",
+        q1_t: "Jak ustawić Siri jako domyślnego asystenta?",
+        q1_a: "Przejdź do Ustawienia Androida → Aplikacje → Aplikacje domyślne → Asystent cyfrowy i wybierz Siri.",
+        q2_t: "Czy Siri działa bez Internetu?",
+        q2_a: "Tak. Podczas korzystania z modelu lokalnego zapytania są przetwarzane bezpośrednio na smartfonie.",
+        q3_t: "Skąd wziąć klucz API?",
+        q3_a: "Możesz użyć klucza API zgodnego z OpenAI, Gemini, Groq lub OpenRouter i skonfigurować go w ustawieniach aplikacji.",
+        q4_t: "Jak utworzyć obraz?",
+        q4_a: "Wpisz opis obrazu lub użyj polecenia /image na czacie.",
+        cta_title: "Zainstaluj Siri na Androidzie",
+        cta_desc: "Pobierz pakiet APK."
+    },
 
-        q3_a:
-            "You can use a compatible OpenAI, Gemini, Groq or OpenRouter API key and configure it in the app settings.",
+    uk: {
+        dl_btn: "Завантажити",
+        hero_tag: "Siri для Android",
+        hero_h1: "Siri. Тепер на Android.",
+        hero_sub: "Персональний помічник із нативною інтеграцією з пристроєм, локальними моделями ШІ прямо на смартфоні та генерацією зображень.",
+        btn_dl_apk: "Завантажити APK",
+        btn_faq: "Часті запитання",
+        feat_tag: "Можливості",
+        feat_heading: "Контроль і приватність",
+        f1_title: "Локальні моделі ШІ прямо на пристрої",
+        f1_desc: "Siri підтримує локальні мовні моделі, які працюють безпосередньо на телефоні без передачі даних у хмару.",
+        f2_title: "Працює без інтернету",
+        f2_desc: "Локальні функції Siri залишаються доступними навіть без підключення до мережі.",
+        f3_title: "Генерація зображень",
+        f3_desc: "Створюйте зображення за текстовим описом або використовуйте команду /image безпосередньо в чаті.",
+        f4_title: "Історія діалогів і розумний пошук",
+        f4_desc: "Організовуйте розмови за датою, перемикайте вигляд і швидко шукайте в історії.",
+        spec_tag: "Характеристики",
+        spec_heading: "Вимоги до телефону",
+        sp_os_k: "Операційна система",
+        sp_os_v: "Android 10 або новіше (API 29+)",
+        sp_ram_k: "Оперативна пам’ять",
+        sp_ram_v: "3 ГБ (4+ ГБ для локальних моделей ШІ)",
+        sp_local_k: "Локальні моделі ШІ",
+        sp_local_v: "Підтримуються",
+        sp_net_k: "Інтернет",
+        sp_net_v: "Потрібен для хмарних API та генерації зображень",
+        sp_api_k: "API-ключ",
+        sp_api_v: "Сумісний з OpenAI / Gemini / Groq, необов’язково",
+        faq_heading: "Часті запитання",
+        q0_t: "Як локальні моделі ШІ працюють без інтернету?",
+        q0_a: "Siri може завантажувати компактні мовні моделі безпосередньо на пристрій і обробляти запити локально без підключення до інтернету.",
+        q1_t: "Як зробити Siri помічником за замовчуванням?",
+        q1_a: "Перейдіть у Налаштування Android → Програми → Програми за замовчуванням → Цифровий помічник і виберіть Siri.",
+        q2_t: "Чи працює Siri без інтернету?",
+        q2_a: "Так. Під час використання локальної моделі запити обробляються безпосередньо на смартфоні.",
+        q3_t: "Де отримати API-ключ?",
+        q3_a: "Можна використовувати сумісний API-ключ OpenAI, Gemini, Groq або OpenRouter і налаштувати його в параметрах програми.",
+        q4_t: "Як створити зображення?",
+        q4_a: "Введіть опис зображення або використайте команду /image у чаті.",
+        cta_title: "Встановіть Siri на Android",
+        cta_desc: "Завантажте APK-пакет."
+    },
 
-        q4_t:
-            "How do I create an image?",
+    kk: {
+        dl_btn: "Жүктеп алу",
+        hero_tag: "Android үшін Siri",
+        hero_h1: "Siri. Енді Android жүйесінде.",
+        hero_sub: "Құрылғымен тікелей интеграциясы, смартфонда жергілікті жұмыс істейтін ЖИ модельдері және кескін жасау мүмкіндігі бар жеке көмекші.",
+        btn_dl_apk: "APK жүктеп алу",
+        btn_faq: "Жиі қойылатын сұрақтар",
+        feat_tag: "Мүмкіндіктер",
+        feat_heading: "Бақылау және құпиялылық",
+        f1_title: "Құрылғыдағы жергілікті ЖИ модельдері",
+        f1_desc: "Siri деректерді бұлтқа жібермей, тікелей телефонда жұмыс істейтін жергілікті тілдік модельдерді қолдайды.",
+        f2_title: "Интернетсіз жұмыс істейді",
+        f2_desc: "Siri-дің жергілікті мүмкіндіктері интернет қосылымы болмаса да қолжетімді.",
+        f3_title: "Кескін жасау",
+        f3_desc: "Мәтіндік сипаттама арқылы кескін жасаңыз немесе чатта /image пәрменін пайдаланыңыз.",
+        f4_title: "Диалог тарихы және ақылды іздеу",
+        f4_desc: "Сөйлесулерді күн бойынша реттеңіз, көріністерді ауыстырыңыз және тарихтан жылдам іздеңіз.",
+        spec_tag: "Сипаттамалар",
+        spec_heading: "Телефонға қойылатын талаптар",
+        sp_os_k: "Операциялық жүйе",
+        sp_os_v: "Android 10 немесе жаңарақ (API 29+)",
+        sp_ram_k: "Жедел жад",
+        sp_ram_v: "3 ГБ (жергілікті ЖИ модельдері үшін 4+ ГБ)",
+        sp_local_k: "Жергілікті ЖИ модельдері",
+        sp_local_v: "Қолдау көрсетіледі",
+        sp_net_k: "Интернет",
+        sp_net_v: "Бұлттық API және кескін жасау үшін қажет",
+        sp_api_k: "API кілті",
+        sp_api_v: "OpenAI / Gemini / Groq үйлесімді, міндетті емес",
+        faq_heading: "Жиі қойылатын сұрақтар",
+        q0_t: "Жергілікті ЖИ модельдері интернетсіз қалай жұмыс істейді?",
+        q0_a: "Siri ықшам тілдік модельдерді тікелей құрылғыға жүктеп, сұрауларды интернетсіз жергілікті түрде өңдей алады.",
+        q1_t: "Siri-ді әдепкі көмекші ретінде қалай орнатуға болады?",
+        q1_a: "Android Баптаулары → Қолданбалар → Әдепкі қолданбалар → Цифрлық көмекші бөліміне өтіп, Siri таңдаңыз.",
+        q2_t: "Siri интернетсіз жұмыс істей ме?",
+        q2_a: "Иә. Жергілікті модель пайдаланылғанда сұраулар тікелей смартфонда өңделеді.",
+        q3_t: "API кілтін қайдан алуға болады?",
+        q3_a: "OpenAI, Gemini, Groq немесе OpenRouter үйлесімді API кілтін қолданып, оны қолданба параметрлерінде баптай аласыз.",
+        q4_t: "Кескінді қалай жасауға болады?",
+        q4_a: "Кескін сипаттамасын енгізіңіз немесе чатта /image пәрменін пайдаланыңыз.",
+        cta_title: "Siri-ді Android жүйесіне орнатыңыз",
+        cta_desc: "APK пакетін жүктеп алыңыз."
+    },
 
-        q4_a:
-            "Enter an image description or use the /image command in chat.",
+    ar: {
+        dl_btn: "تنزيل",
+        hero_tag: "Siri لنظام Android",
+        hero_h1: "Siri. الآن على Android.",
+        hero_sub: "مساعد شخصي مع تكامل مباشر مع الجهاز ونماذج ذكاء اصطناعي محلية تعمل على الهاتف نفسه وإمكانية إنشاء الصور.",
+        btn_dl_apk: "تنزيل APK",
+        btn_faq: "الأسئلة الشائعة",
+        feat_tag: "الميزات",
+        feat_heading: "التحكم والخصوصية",
+        f1_title: "نماذج ذكاء اصطناعي محلية على الجهاز",
+        f1_desc: "يدعم Siri نماذج لغوية محلية تعمل مباشرة على هاتفك دون إرسال بياناتك إلى السحابة.",
+        f2_title: "يعمل دون اتصال",
+        f2_desc: "تبقى ميزات Siri المحلية متاحة حتى عند عدم وجود اتصال بالإنترنت.",
+        f3_title: "إنشاء الصور",
+        f3_desc: "أنشئ صورًا من أوصاف نصية أو استخدم الأمر /image مباشرة داخل المحادثة.",
+        f4_title: "سجل المحادثات والبحث الذكي",
+        f4_desc: "نظّم المحادثات حسب التاريخ وانتقل بين طرق العرض وابحث بسرعة في السجل.",
+        spec_tag: "المواصفات",
+        spec_heading: "متطلبات الهاتف",
+        sp_os_k: "نظام التشغيل",
+        sp_os_v: "Android 10 أو أحدث (API 29+)",
+        sp_ram_k: "ذاكرة RAM",
+        sp_ram_v: "3 جيجابايت (4+ جيجابايت لنماذج الذكاء الاصطناعي المحلية)",
+        sp_local_k: "نماذج الذكاء الاصطناعي المحلية",
+        sp_local_v: "مدعومة",
+        sp_net_k: "الإنترنت",
+        sp_net_v: "مطلوب لواجهات API السحابية وإنشاء الصور",
+        sp_api_k: "مفتاح API",
+        sp_api_v: "متوافق مع OpenAI / Gemini / Groq، اختياري",
+        faq_heading: "الأسئلة الشائعة",
+        q0_t: "كيف تعمل نماذج الذكاء الاصطناعي المحلية دون إنترنت؟",
+        q0_a: "يمكن لـ Siri تحميل نماذج لغوية مضغوطة مباشرة على جهازك ومعالجة الطلبات محليًا دون اتصال بالإنترنت.",
+        q1_t: "كيف أجعل Siri المساعد الافتراضي؟",
+        q1_a: "انتقل إلى إعدادات Android → التطبيقات → التطبيقات الافتراضية → المساعد الرقمي ثم اختر Siri.",
+        q2_t: "هل يعمل Siri دون إنترنت؟",
+        q2_a: "نعم. عند استخدام نموذج محلي تتم معالجة الطلبات مباشرة على هاتفك.",
+        q3_t: "من أين أحصل على مفتاح API؟",
+        q3_a: "يمكنك استخدام مفتاح API متوافق مع OpenAI أو Gemini أو Groq أو OpenRouter وضبطه من إعدادات التطبيق.",
+        q4_t: "كيف أنشئ صورة؟",
+        q4_a: "أدخل وصفًا للصورة أو استخدم الأمر /image داخل المحادثة.",
+        cta_title: "ثبّت Siri على Android",
+        cta_desc: "نزّل حزمة APK."
+    },
 
-        cta_title:
-            "Get Siri on Android",
+    hi: {
+        dl_btn: "डाउनलोड",
+        hero_tag: "Android के लिए Siri",
+        hero_h1: "Siri. अब Android पर.",
+        hero_sub: "डिवाइस के साथ नेटिव इंटीग्रेशन, फोन पर चलने वाले लोकल AI मॉडल और इमेज जेनरेशन वाला निजी सहायक।",
+        btn_dl_apk: "APK डाउनलोड करें",
+        btn_faq: "सामान्य प्रश्न",
+        feat_tag: "विशेषताएँ",
+        feat_heading: "नियंत्रण और गोपनीयता",
+        f1_title: "डिवाइस पर लोकल AI मॉडल",
+        f1_desc: "Siri ऐसे लोकल भाषा मॉडल का समर्थन करता है जो आपका डेटा क्लाउड पर भेजे बिना सीधे फोन पर चलते हैं।",
+        f2_title: "ऑफलाइन काम करता है",
+        f2_desc: "Siri की लोकल सुविधाएँ इंटरनेट कनेक्शन न होने पर भी उपलब्ध रहती हैं।",
+        f3_title: "इमेज जेनरेशन",
+        f3_desc: "टेक्स्ट विवरण से इमेज बनाएँ या चैट में सीधे /image कमांड का उपयोग करें।",
+        f4_title: "चैट इतिहास और स्मार्ट खोज",
+        f4_desc: "बातचीत को तारीख के अनुसार व्यवस्थित करें, दृश्य बदलें और इतिहास में तेजी से खोजें।",
+        spec_tag: "विशिष्टताएँ",
+        spec_heading: "फोन की आवश्यकताएँ",
+        sp_os_k: "ऑपरेटिंग सिस्टम",
+        sp_os_v: "Android 10 या नया (API 29+)",
+        sp_ram_k: "RAM",
+        sp_ram_v: "3 GB (लोकल AI मॉडल के लिए 4+ GB)",
+        sp_local_k: "लोकल AI मॉडल",
+        sp_local_v: "समर्थित",
+        sp_net_k: "इंटरनेट",
+        sp_net_v: "क्लाउड API और इमेज जेनरेशन के लिए आवश्यक",
+        sp_api_k: "API कुंजी",
+        sp_api_v: "OpenAI / Gemini / Groq संगत, वैकल्पिक",
+        faq_heading: "अक्सर पूछे जाने वाले प्रश्न",
+        q0_t: "लोकल AI मॉडल इंटरनेट के बिना कैसे काम करते हैं?",
+        q0_a: "Siri छोटे भाषा मॉडल को सीधे आपके डिवाइस पर लोड कर सकता है और इंटरनेट के बिना अनुरोधों को स्थानीय रूप से प्रोसेस कर सकता है।",
+        q1_t: "Siri को डिफ़ॉल्ट सहायक कैसे बनाऊँ?",
+        q1_a: "Android सेटिंग्स → ऐप्स → डिफ़ॉल्ट ऐप्स → डिजिटल असिस्टेंट पर जाएँ और Siri चुनें।",
+        q2_t: "क्या Siri इंटरनेट के बिना काम करता है?",
+        q2_a: "हाँ। लोकल मॉडल का उपयोग करने पर अनुरोध सीधे स्मार्टफोन पर प्रोसेस किए जाते हैं।",
+        q3_t: "API कुंजी कहाँ से मिलेगी?",
+        q3_a: "आप OpenAI, Gemini, Groq या OpenRouter संगत API कुंजी का उपयोग कर सकते हैं और उसे ऐप सेटिंग्स में कॉन्फ़िगर कर सकते हैं।",
+        q4_t: "इमेज कैसे बनाऊँ?",
+        q4_a: "इमेज का विवरण लिखें या चैट में /image कमांड का उपयोग करें।",
+        cta_title: "Android पर Siri इंस्टॉल करें",
+        cta_desc: "APK पैकेज डाउनलोड करें।"
+    },
 
-        cta_desc:
-            "Download the APK package."
+    ja: {
+        dl_btn: "ダウンロード",
+        hero_tag: "Android版 Siri",
+        hero_h1: "Siri。Androidでも。",
+        hero_sub: "端末とのネイティブ連携、スマートフォン上で動作するローカルAIモデル、画像生成に対応したパーソナルアシスタントです。",
+        btn_dl_apk: "APKをダウンロード",
+        btn_faq: "よくある質問",
+        feat_tag: "機能",
+        feat_heading: "コントロールとプライバシー",
+        f1_title: "端末上で動作するローカルAIモデル",
+        f1_desc: "Siriは、データをクラウドへ送信せずスマートフォン上で直接動作するローカル言語モデルに対応しています。",
+        f2_title: "オフライン対応",
+        f2_desc: "Siriのローカル機能はインターネット接続がなくても利用できます。",
+        f3_title: "画像生成",
+        f3_desc: "テキストの説明から画像を生成したり、チャットで /image コマンドを使用できます。",
+        f4_title: "会話履歴とスマート検索",
+        f4_desc: "会話を日付ごとに整理し、表示を切り替えたり履歴をすばやく検索できます。",
+        spec_tag: "仕様",
+        spec_heading: "端末の要件",
+        sp_os_k: "OS",
+        sp_os_v: "Android 10以降（API 29+）",
+        sp_ram_k: "RAM",
+        sp_ram_v: "3 GB（ローカルAIモデルは4 GB以上推奨）",
+        sp_local_k: "ローカルAIモデル",
+        sp_local_v: "対応",
+        sp_net_k: "インターネット",
+        sp_net_v: "クラウドAPIと画像生成に必要",
+        sp_api_k: "APIキー",
+        sp_api_v: "OpenAI / Gemini / Groq互換、任意",
+        faq_heading: "よくある質問",
+        q0_t: "ローカルAIモデルはインターネットなしでどう動作しますか？",
+        q0_a: "Siriは小型の言語モデルを端末に直接読み込み、インターネット接続なしでローカル処理できます。",
+        q1_t: "Siriを標準アシスタントに設定するには？",
+        q1_a: "Androidの設定 → アプリ → デフォルトのアプリ → デジタルアシスタントからSiriを選択してください。",
+        q2_t: "Siriはインターネットなしでも使えますか？",
+        q2_a: "はい。ローカルモデルを使用する場合、リクエストはスマートフォン上で直接処理されます。",
+        q3_t: "APIキーはどこで取得できますか？",
+        q3_a: "OpenAI、Gemini、Groq、OpenRouter互換のAPIキーを使用し、アプリ設定で登録できます。",
+        q4_t: "画像を作成するには？",
+        q4_a: "画像の説明を入力するか、チャットで /image コマンドを使用してください。",
+        cta_title: "AndroidにSiriをインストール",
+        cta_desc: "APKパッケージをダウンロードしてください。"
+    },
+
+    ko: {
+        dl_btn: "다운로드",
+        hero_tag: "Android용 Siri",
+        hero_h1: "Siri. 이제 Android에서.",
+        hero_sub: "기기와의 네이티브 통합, 스마트폰에서 실행되는 로컬 AI 모델, 이미지 생성을 지원하는 개인 비서입니다.",
+        btn_dl_apk: "APK 다운로드",
+        btn_faq: "자주 묻는 질문",
+        feat_tag: "기능",
+        feat_heading: "제어와 개인정보 보호",
+        f1_title: "기기에서 실행되는 로컬 AI 모델",
+        f1_desc: "Siri는 데이터를 클라우드로 보내지 않고 스마트폰에서 직접 실행되는 로컬 언어 모델을 지원합니다.",
+        f2_title: "오프라인 지원",
+        f2_desc: "인터넷 연결이 없어도 Siri의 로컬 기능을 계속 사용할 수 있습니다.",
+        f3_title: "이미지 생성",
+        f3_desc: "텍스트 설명으로 이미지를 만들거나 채팅에서 /image 명령을 사용할 수 있습니다.",
+        f4_title: "대화 기록과 스마트 검색",
+        f4_desc: "대화를 날짜별로 정리하고 보기 방식을 전환하며 기록을 빠르게 검색할 수 있습니다.",
+        spec_tag: "사양",
+        spec_heading: "휴대폰 요구 사항",
+        sp_os_k: "운영체제",
+        sp_os_v: "Android 10 이상 (API 29+)",
+        sp_ram_k: "RAM",
+        sp_ram_v: "3 GB (로컬 AI 모델은 4 GB 이상)",
+        sp_local_k: "로컬 AI 모델",
+        sp_local_v: "지원됨",
+        sp_net_k: "인터넷",
+        sp_net_v: "클라우드 API 및 이미지 생성에 필요",
+        sp_api_k: "API 키",
+        sp_api_v: "OpenAI / Gemini / Groq 호환, 선택 사항",
+        faq_heading: "자주 묻는 질문",
+        q0_t: "로컬 AI 모델은 인터넷 없이 어떻게 작동하나요?",
+        q0_a: "Siri는 소형 언어 모델을 기기에 직접 로드하고 인터넷 연결 없이 요청을 로컬에서 처리할 수 있습니다.",
+        q1_t: "Siri를 기본 비서로 설정하려면 어떻게 하나요?",
+        q1_a: "Android 설정 → 앱 → 기본 앱 → 디지털 어시스턴트로 이동한 뒤 Siri를 선택하세요.",
+        q2_t: "Siri는 인터넷 없이도 작동하나요?",
+        q2_a: "네. 로컬 모델을 사용하는 경우 요청은 스마트폰에서 직접 처리됩니다.",
+        q3_t: "API 키는 어디서 받을 수 있나요?",
+        q3_a: "OpenAI, Gemini, Groq 또는 OpenRouter 호환 API 키를 사용하고 앱 설정에서 구성할 수 있습니다.",
+        q4_t: "이미지는 어떻게 만드나요?",
+        q4_a: "이미지 설명을 입력하거나 채팅에서 /image 명령을 사용하세요.",
+        cta_title: "Android에 Siri 설치",
+        cta_desc: "APK 패키지를 다운로드하세요."
+    },
+
+    "zh-CN": {
+        dl_btn: "下载",
+        hero_tag: "Siri Android 版",
+        hero_h1: "Siri。现在登陆 Android。",
+        hero_sub: "一款支持原生设备集成、手机本地 AI 模型运行以及图像生成的个人助手。",
+        btn_dl_apk: "下载 APK",
+        btn_faq: "常见问题",
+        feat_tag: "功能",
+        feat_heading: "控制与隐私",
+        f1_title: "设备端本地 AI 模型",
+        f1_desc: "Siri 支持直接在手机上运行本地语言模型，无需将你的数据发送到云端。",
+        f2_title: "支持离线使用",
+        f2_desc: "即使没有网络连接，Siri 的本地功能仍可继续使用。",
+        f3_title: "图像生成",
+        f3_desc: "通过文字描述生成图片，或直接在聊天中使用 /image 命令。",
+        f4_title: "对话历史与智能搜索",
+        f4_desc: "按日期整理对话，在不同视图之间切换，并快速搜索历史记录。",
+        spec_tag: "规格",
+        spec_heading: "手机要求",
+        sp_os_k: "操作系统",
+        sp_os_v: "Android 10 或更高版本（API 29+）",
+        sp_ram_k: "运行内存",
+        sp_ram_v: "3 GB（本地 AI 模型建议 4 GB 以上）",
+        sp_local_k: "本地 AI 模型",
+        sp_local_v: "支持",
+        sp_net_k: "互联网",
+        sp_net_v: "云端 API 和图像生成时需要",
+        sp_api_k: "API 密钥",
+        sp_api_v: "兼容 OpenAI / Gemini / Groq，可选",
+        faq_heading: "常见问题",
+        q0_t: "本地 AI 模型如何在没有网络的情况下工作？",
+        q0_a: "Siri 可以将轻量级语言模型直接加载到设备中，并在没有互联网连接时本地处理请求。",
+        q1_t: "如何将 Siri 设置为默认助手？",
+        q1_a: "打开 Android 设置 → 应用 → 默认应用 → 数字助理，然后选择 Siri。",
+        q2_t: "Siri 可以离线工作吗？",
+        q2_a: "可以。使用本地模型时，请求会直接在你的手机上处理。",
+        q3_t: "在哪里获取 API 密钥？",
+        q3_a: "你可以使用兼容 OpenAI、Gemini、Groq 或 OpenRouter 的 API 密钥，并在应用设置中进行配置。",
+        q4_t: "如何生成图片？",
+        q4_a: "输入图片描述，或在聊天中使用 /image 命令。",
+        cta_title: "在 Android 上安装 Siri",
+        cta_desc: "下载 APK 安装包。"
     }
-
 };
 
 function switchLanguage(lang) {
+    const data = translations[lang] || translations.ru;
 
-    const data =
-        translations[lang] ||
-        translations.en;
+    document.querySelectorAll("[data-i18n]").forEach((element) => {
+        const key = element.getAttribute("data-i18n");
 
-    document
-        .querySelectorAll("[data-i18n]")
-        .forEach((element) => {
-
-            const key =
-                element.getAttribute("data-i18n");
-
-            if (data[key]) {
-                element.textContent = data[key];
-            }
-
-        });
+        if (Object.prototype.hasOwnProperty.call(data, key)) {
+            element.textContent = data[key];
+        }
+    });
 
     document.documentElement.lang = lang;
 
-    const isRtl =
-        lang === "ar";
+    const isRtl = lang === "ar";
+    document.documentElement.dir = isRtl ? "rtl" : "ltr";
 
-    document.documentElement.dir =
-        isRtl ? "rtl" : "ltr";
-
-    localStorage.setItem(
-        "siri_selected_lang",
-        lang
-    );
+    localStorage.setItem("siri_selected_lang", lang);
 }
 
 function toggleColorTheme() {
-
     const current =
         document.documentElement.getAttribute("data-theme") === "dark"
             ? "light"
             : "dark";
 
-    document.documentElement.setAttribute(
-        "data-theme",
-        current
-    );
-
-    localStorage.setItem(
-        "siri_selected_theme",
-        current
-    );
+    document.documentElement.setAttribute("data-theme", current);
+    localStorage.setItem("siri_selected_theme", current);
 
     updateThemeSvg(current);
 }
 
 function updateThemeSvg(theme) {
-
-    const svg =
-        document.getElementById("themeSvg");
+    const svg = document.getElementById("themeSvg");
 
     if (!svg) return;
 
     if (theme === "light") {
-
         svg.innerHTML = `
             <circle cx="12" cy="12" r="5"/>
             <line x1="12" y1="1" x2="12" y2="3"/>
@@ -1223,69 +1496,43 @@ function updateThemeSvg(theme) {
             <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
             <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
         `;
-
     } else {
-
         svg.innerHTML = `
             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
         `;
-
     }
 }
 
 function toggleFaqCard(button) {
+    const card = button.closest(".faq-card");
+    const wasOpen = card.classList.contains("open");
 
-    const card =
-        button.closest(".faq-card");
-
-    const wasOpen =
-        card.classList.contains("open");
-
-    document
-        .querySelectorAll(".faq-card.open")
-        .forEach((item) => {
-            item.classList.remove("open");
-        });
+    document.querySelectorAll(".faq-card.open").forEach((item) => {
+        item.classList.remove("open");
+    });
 
     if (!wasOpen) {
         card.classList.add("open");
     }
 }
 
-document.addEventListener(
-    "DOMContentLoaded",
-    () => {
+document.addEventListener("DOMContentLoaded", () => {
+    const theme = localStorage.getItem("siri_selected_theme") || "dark";
 
-        const theme =
-            localStorage.getItem(
-                "siri_selected_theme"
-            ) || "dark";
+    document.documentElement.setAttribute("data-theme", theme);
+    updateThemeSvg(theme);
 
-        document.documentElement.setAttribute(
-            "data-theme",
-            theme
-        );
+    const lang = localStorage.getItem("siri_selected_lang") || "ru";
+    const langSelect = document.getElementById("langSelect");
 
-        updateThemeSvg(theme);
-
-        const lang =
-            localStorage.getItem(
-                "siri_selected_lang"
-            ) || "ru";
-
-        const langSelect =
-            document.getElementById(
-                "langSelect"
-            );
-
-        if (langSelect) {
-            langSelect.value = lang;
-        }
-
-        switchLanguage(lang);
+    if (langSelect && translations[lang]) {
+        langSelect.value = lang;
+    } else if (langSelect) {
+        langSelect.value = "ru";
     }
-);
 
+    switchLanguage(translations[lang] ? lang : "ru");
+});
 </script>
 
 </body>
