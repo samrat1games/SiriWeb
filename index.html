@@ -1,0 +1,1292 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=5">
+<title>Siri на Android</title>
+<link rel="stylesheet" href="css/fonts.css">
+
+<style>
+:root {
+    --bg-color: #000000;
+    --nav-bg: rgba(0, 0, 0, 0.78);
+    --card-bg: #1c1c1e;
+    --card-hover: #2c2c2e;
+    --border-color: rgba(255, 255, 255, 0.1);
+    --text-primary: #f5f5f7;
+    --text-secondary: #86868b;
+    --link-color: #2997ff;
+    --accent-blue: #0071e3;
+    --accent-blue-hover: #0077ed;
+    --font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+[data-theme="light"] {
+    --bg-color: #ffffff;
+    --nav-bg: rgba(255, 255, 255, 0.78);
+    --card-bg: #f5f5f7;
+    --card-hover: #e8e8ed;
+    --border-color: rgba(0, 0, 0, 0.08);
+    --text-primary: #1d1d1f;
+    --text-secondary: #6e6e73;
+    --link-color: #0071e3;
+    --accent-blue: #0071e3;
+    --accent-blue-hover: #0077ed;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: var(--font-family);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    line-height: 1.5;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Navbar */
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    height: 48px;
+    background: var(--nav-bg);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    border-bottom: 1px solid var(--border-color);
+    padding-top: env(safe-area-inset-top, 0);
+}
+
+.navbar-content {
+    max-width: 980px;
+    margin: 0 auto;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+.nav-title {
+    font-size: 19px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+    text-decoration: none;
+    user-select: none;
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.lang-picker {
+    background: var(--card-bg);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    font-family: var(--font-family);
+    font-size: 12px;
+    font-weight: 500;
+    padding: 5px 8px;
+    border-radius: 980px;
+    cursor: pointer;
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.theme-button {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    flex-shrink: 0;
+}
+
+.theme-button:hover {
+    color: var(--text-primary);
+}
+
+.nav-download-btn {
+    background: var(--accent-blue);
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 980px;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+    white-space: nowrap;
+}
+
+.nav-download-btn:hover {
+    background: var(--accent-blue-hover);
+}
+
+main {
+    position: relative;
+    padding-top: calc(48px + env(safe-area-inset-top, 0));
+}
+
+/* Hero */
+
+.hero-wrapper {
+    text-align: center;
+    padding: 90px 20px 60px;
+    max-width: 860px;
+    margin: 0 auto;
+}
+
+.hero-eyebrow {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--link-color);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 14px;
+}
+
+.hero-headline {
+    font-size: clamp(38px, 6.8vw, 76px);
+    line-height: 1.06;
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    margin-bottom: 18px;
+}
+
+.hero-subhead {
+    font-size: clamp(17px, 2.2vw, 22px);
+    line-height: 1.4;
+    color: var(--text-secondary);
+    max-width: 640px;
+    margin: 0 auto 36px;
+    font-weight: 400;
+}
+
+.hero-cta-group {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+}
+
+.button-primary {
+    background: var(--accent-blue);
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 13px 32px;
+    border-radius: 980px;
+    text-decoration: none;
+    display: inline-block;
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease;
+    box-shadow: 0 4px 14px rgba(0, 113, 227, 0.35);
+}
+
+.button-primary:hover {
+    background: var(--accent-blue-hover);
+    transform: scale(1.02);
+}
+
+.button-secondary {
+    background: var(--card-bg);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    font-size: 16px;
+    font-weight: 500;
+    padding: 13px 28px;
+    border-radius: 980px;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.2s ease;
+}
+
+.button-secondary:hover {
+    background: var(--card-hover);
+}
+
+/* Content */
+
+.page-section {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 40px 20px 60px;
+}
+
+.section-eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--link-color);
+    margin-bottom: 10px;
+}
+
+.section-heading {
+    font-size: clamp(26px, 3.8vw, 42px);
+    line-height: 1.12;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    margin-bottom: 30px;
+}
+
+.bento-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 18px;
+    padding: 28px 24px;
+    transition: background-color 0.2s ease;
+}
+
+.card:hover {
+    background: var(--card-hover);
+}
+
+.card.col-span-2 {
+    grid-column: span 2;
+}
+
+.card h3 {
+    font-size: 19px;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    margin-bottom: 8px;
+}
+
+.card p {
+    font-size: 14.5px;
+    color: var(--text-secondary);
+    line-height: 1.55;
+}
+
+/* Specifications */
+
+.specs-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.specs-table tr {
+    border-bottom: 1px solid var(--border-color);
+}
+
+.specs-table tr:last-child {
+    border-bottom: none;
+}
+
+.specs-table td {
+    padding: 14px 0;
+    font-size: 14.5px;
+    vertical-align: middle;
+}
+
+.specs-table td:first-child {
+    color: var(--text-secondary);
+    width: 44%;
+    padding-right: 14px;
+}
+
+.specs-table td:last-child {
+    font-weight: 500;
+}
+
+/* FAQ */
+
+.faq-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.faq-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.faq-trigger {
+    width: 100%;
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    font-family: var(--font-family);
+    font-size: 15.5px;
+    font-weight: 600;
+    text-align: left;
+    padding: 20px 22px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.faq-trigger:hover {
+    color: var(--link-color);
+}
+
+.faq-arrow {
+    flex-shrink: 0;
+    transition: transform 0.25s ease;
+    color: var(--text-secondary);
+}
+
+.faq-card.open .faq-arrow {
+    transform: rotate(180deg);
+}
+
+.faq-body {
+    display: none;
+    padding: 0 22px 20px;
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.55;
+}
+
+.faq-card.open .faq-body {
+    display: block;
+}
+
+/* Download */
+
+.download-section {
+    text-align: center;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 22px;
+    padding: 50px 24px;
+    max-width: 720px;
+    margin: 10px auto 50px;
+}
+
+.download-section h2 {
+    font-size: clamp(24px, 3.2vw, 36px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 10px;
+}
+
+.download-section p {
+    font-size: 15.5px;
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+}
+
+.section-divider {
+    height: 1px;
+    background: var(--border-color);
+    max-width: 980px;
+    margin: 0 auto 40px;
+}
+
+/* Footer */
+
+footer {
+    border-top: 1px solid var(--border-color);
+    padding: 36px 20px calc(30px + env(safe-area-inset-bottom, 0));
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+.footer-credit {
+    margin-top: 10px;
+    font-size: 13px;
+}
+
+.footer-credit a {
+    color: var(--text-primary);
+    text-decoration: underline;
+    font-weight: 500;
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+    .navbar-content {
+        padding: 0 14px;
+    }
+
+    .hero-wrapper {
+        padding: 60px 16px 40px;
+    }
+
+    .page-section {
+        padding: 30px 16px 50px;
+    }
+
+    .bento-grid-2 {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .card.col-span-2 {
+        grid-column: span 1;
+    }
+
+    .card {
+        padding: 22px 18px;
+    }
+
+    .specs-table td {
+        padding: 12px 0;
+        font-size: 13.5px;
+    }
+
+    .specs-table td:first-child {
+        width: 48%;
+    }
+
+    .hero-cta-group {
+        flex-direction: column;
+        width: 100%;
+        max-width: 320px;
+        margin: 0 auto 10px;
+    }
+
+    .button-primary,
+    .button-secondary {
+        width: 100%;
+        text-align: center;
+    }
+
+    .download-section {
+        padding: 36px 18px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav class="navbar">
+    <div class="navbar-content">
+
+        <a href="#" class="nav-title">Siri</a>
+
+        <div class="nav-actions">
+
+            <select
+                class="lang-picker"
+                id="langSelect"
+                onchange="switchLanguage(this.value)"
+            >
+                <option value="ru">RU</option>
+                <option value="en">EN</option>
+                <option value="de">DE</option>
+                <option value="fr">FR</option>
+                <option value="es">ES</option>
+                <option value="it">IT</option>
+                <option value="pt">PT</option>
+                <option value="tr">TR</option>
+                <option value="pl">PL</option>
+                <option value="uk">UK</option>
+                <option value="kk">KK</option>
+                <option value="ar">AR</option>
+                <option value="hi">HI</option>
+                <option value="ja">JA</option>
+                <option value="ko">KO</option>
+                <option value="zh-CN">ZH</option>
+            </select>
+
+            <button
+                class="theme-button"
+                onclick="toggleColorTheme()"
+                title="Theme"
+                aria-label="Change theme"
+            >
+                <svg
+                    id="themeSvg"
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                >
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                </svg>
+            </button>
+
+            <a
+                href="Siri.apk"
+                download="Siri.apk"
+                class="nav-download-btn"
+                data-i18n="dl_btn"
+            >
+                Скачать
+            </a>
+
+        </div>
+    </div>
+</nav>
+
+<main>
+
+    <section class="hero-wrapper">
+
+        <div class="hero-eyebrow" data-i18n="hero_tag">
+            Siri for Android
+        </div>
+
+        <h1 class="hero-headline" data-i18n="hero_h1">
+            Siri. Теперь на Android.
+        </h1>
+
+        <p class="hero-subhead" data-i18n="hero_sub">
+            Персональный помощник с нативным управлением устройством,
+            запуском локальных моделей прямо на смартфоне и созданием
+            изображений.
+        </p>
+
+        <div class="hero-cta-group">
+
+            <a
+                href="Siri.apk"
+                download="Siri.apk"
+                class="button-primary"
+                data-i18n="btn_dl_apk"
+            >
+                Скачать APK
+            </a>
+
+            <a
+                href="#faq"
+                class="button-secondary"
+                data-i18n="btn_faq"
+            >
+                Частые вопросы
+            </a>
+
+        </div>
+
+    </section>
+
+    <div class="section-divider"></div>
+
+    <section class="page-section" id="features">
+
+        <div class="section-eyebrow" data-i18n="feat_tag">
+            Возможности
+        </div>
+
+        <h2 class="section-heading" data-i18n="feat_heading">
+            Полный контроль и приватность
+        </h2>
+
+        <div class="bento-grid-2">
+
+            <div class="card col-span-2">
+                <h3 data-i18n="f1_title">
+                    Локальные нейросети прямо на устройстве
+                </h3>
+
+                <p data-i18n="f1_desc">
+                    Siri поддерживает запуск локальных языковых моделей
+                    On-Device. Обработка запросов происходит на процессоре
+                    вашего телефона без интернета и без передачи данных
+                    в облако.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3 data-i18n="f2_title">
+                    Работа без интернета
+                </h3>
+
+                <p data-i18n="f2_desc">
+                    Локальные возможности Siri продолжают работать даже
+                    при отсутствии подключения к сети.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3 data-i18n="f3_title">
+                    Генерация изображений
+                </h3>
+
+                <p data-i18n="f3_desc">
+                    Создавайте изображения по текстовому описанию или
+                    через команду /image прямо в диалоге.
+                </p>
+            </div>
+
+            <div class="card col-span-2">
+                <h3 data-i18n="f4_title">
+                    История диалогов и умный поиск
+                </h3>
+
+                <p data-i18n="f4_desc">
+                    Удобная организация разговоров, группировка по датам,
+                    переключение между видами и быстрый поиск по истории.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <div class="section-divider"></div>
+
+    <section class="page-section" id="specs">
+
+        <div class="section-eyebrow" data-i18n="spec_tag">
+            Характеристики
+        </div>
+
+        <h2 class="section-heading" data-i18n="spec_heading">
+            Требования к телефону
+        </h2>
+
+        <div class="card">
+
+            <table class="specs-table">
+
+                <tr>
+                    <td data-i18n="sp_os_k">
+                        Операционная система
+                    </td>
+
+                    <td data-i18n="sp_os_v">
+                        Android 10 и выше (API 29+)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td data-i18n="sp_ram_k">
+                        Оперативная память
+                    </td>
+
+                    <td data-i18n="sp_ram_v">
+                        3 ГБ (4+ ГБ для локальных нейросетей)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td data-i18n="sp_local_k">
+                        Локальные ИИ модели
+                    </td>
+
+                    <td data-i18n="sp_local_v">
+                        Поддерживаются
+                    </td>
+                </tr>
+
+                <tr>
+                    <td data-i18n="sp_net_k">
+                        Интернет
+                    </td>
+
+                    <td data-i18n="sp_net_v">
+                        Нужен для облачных API и генерации изображений
+                    </td>
+                </tr>
+
+                <tr>
+                    <td data-i18n="sp_api_k">
+                        API ключ
+                    </td>
+
+                    <td data-i18n="sp_api_v">
+                        OpenAI / Gemini / Groq совместимый, опционально
+                    </td>
+                </tr>
+
+            </table>
+
+        </div>
+
+    </section>
+
+    <div class="section-divider"></div>
+
+    <section class="page-section" id="faq">
+
+        <div class="section-eyebrow">
+            FAQ
+        </div>
+
+        <h2 class="section-heading" data-i18n="faq_heading">
+            Часто задаваемые вопросы
+        </h2>
+
+        <div class="faq-stack">
+
+            <div class="faq-card">
+
+                <button
+                    class="faq-trigger"
+                    onclick="toggleFaqCard(this)"
+                >
+                    <span data-i18n="q0_t">
+                        Как работают локальные ИИ модели без интернета?
+                    </span>
+
+                    <svg
+                        class="faq-arrow"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <polyline points="6 9 12 15 18 9"/>
+                    </svg>
+                </button>
+
+                <div class="faq-body" data-i18n="q0_a">
+                    Siri поддерживает загрузку компактных языковых моделей
+                    непосредственно на устройство. Обработка происходит
+                    локально без подключения к сети.
+                </div>
+
+            </div>
+
+            <div class="faq-card">
+
+                <button
+                    class="faq-trigger"
+                    onclick="toggleFaqCard(this)"
+                >
+                    <span data-i18n="q1_t">
+                        Как назначить Siri помощником по умолчанию?
+                    </span>
+
+                    <svg
+                        class="faq-arrow"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <polyline points="6 9 12 15 18 9"/>
+                    </svg>
+                </button>
+
+                <div class="faq-body" data-i18n="q1_a">
+                    Перейдите в Настройки Android → Приложения →
+                    Приложения по умолчанию → Цифровой помощник и
+                    выберите Siri.
+                </div>
+
+            </div>
+
+            <div class="faq-card">
+
+                <button
+                    class="faq-trigger"
+                    onclick="toggleFaqCard(this)"
+                >
+                    <span data-i18n="q2_t">
+                        Работает ли Siri без интернета?
+                    </span>
+
+                    <svg
+                        class="faq-arrow"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <polyline points="6 9 12 15 18 9"/>
+                    </svg>
+                </button>
+
+                <div class="faq-body" data-i18n="q2_a">
+                    Да. При использовании локальной модели обработка
+                    запросов выполняется непосредственно на смартфоне.
+                </div>
+
+            </div>
+
+            <div class="faq-card">
+
+                <button
+                    class="faq-trigger"
+                    onclick="toggleFaqCard(this)"
+                >
+                    <span data-i18n="q3_t">
+                        Где взять API ключ для облачных моделей?
+                    </span>
+
+                    <svg
+                        class="faq-arrow"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <polyline points="6 9 12 15 18 9"/>
+                    </svg>
+                </button>
+
+                <div class="faq-body" data-i18n="q3_a">
+                    Можно использовать совместимый ключ OpenAI, Gemini,
+                    Groq или OpenRouter. Ключ и адрес API указываются
+                    в настройках приложения.
+                </div>
+
+            </div>
+
+            <div class="faq-card">
+
+                <button
+                    class="faq-trigger"
+                    onclick="toggleFaqCard(this)"
+                >
+                    <span data-i18n="q4_t">
+                        Как создать изображение?
+                    </span>
+
+                    <svg
+                        class="faq-arrow"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <polyline points="6 9 12 15 18 9"/>
+                    </svg>
+                </button>
+
+                <div class="faq-body" data-i18n="q4_a">
+                    Введите описание изображения или используйте
+                    команду /image в диалоге.
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <div class="section-divider"></div>
+
+    <section class="page-section">
+
+        <div class="download-section">
+
+            <h2 data-i18n="cta_title">
+                Установите Siri на Android
+            </h2>
+
+            <p data-i18n="cta_desc">
+                Скачайте установочный APK-пакет.
+            </p>
+
+            <a
+                href="Siri.apk"
+                download="Siri.apk"
+                class="button-primary"
+                style="font-size: 17px; padding: 14px 36px;"
+                data-i18n="btn_dl_apk"
+            >
+                Скачать Siri.apk
+            </a>
+
+        </div>
+
+    </section>
+
+</main>
+
+<footer>
+
+    <div>
+        © 2026 Siri for Android
+    </div>
+
+    <div class="footer-credit">
+        Made with ❤️ by
+        <a
+            href="https://t.me/Beketov_samrat"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            @Beketov_samrat
+        </a>,
+        part of Magical Team
+    </div>
+
+</footer>
+
+<script>
+
+const translations = {
+
+    ru: {
+        dl_btn: "Скачать",
+
+        hero_tag: "Siri for Android",
+        hero_h1: "Siri. Теперь на Android.",
+        hero_sub:
+            "Персональный помощник с нативным управлением устройством, запуском локальных моделей прямо на смартфоне и созданием изображений.",
+
+        btn_dl_apk: "Скачать APK",
+        btn_faq: "Частые вопросы",
+
+        feat_tag: "Возможности",
+        feat_heading: "Полный контроль и приватность",
+
+        f1_title: "Локальные нейросети прямо на устройстве",
+        f1_desc:
+            "Siri поддерживает запуск локальных языковых моделей On-Device. Обработка запросов происходит на процессоре вашего телефона без интернета и без передачи данных в облако.",
+
+        f2_title: "Работа без интернета",
+        f2_desc:
+            "Локальные возможности Siri продолжают работать даже при отсутствии подключения к сети.",
+
+        f3_title: "Генерация изображений",
+        f3_desc:
+            "Создавайте изображения по текстовому описанию или через команду /image прямо в диалоге.",
+
+        f4_title: "История диалогов и умный поиск",
+        f4_desc:
+            "Удобная организация разговоров, группировка по датам, переключение между видами и быстрый поиск по истории.",
+
+        spec_tag: "Характеристики",
+        spec_heading: "Требования к телефону",
+
+        sp_os_k: "Операционная система",
+        sp_os_v: "Android 10 и выше (API 29+)",
+
+        sp_ram_k: "Оперативная память",
+        sp_ram_v: "3 ГБ (4+ ГБ для локальных нейросетей)",
+
+        sp_local_k: "Локальные ИИ модели",
+        sp_local_v: "Поддерживаются",
+
+        sp_net_k: "Интернет",
+        sp_net_v:
+            "Нужен для облачных API и генерации изображений",
+
+        sp_api_k: "API ключ",
+        sp_api_v:
+            "OpenAI / Gemini / Groq совместимый, опционально",
+
+        faq_heading: "Часто задаваемые вопросы",
+
+        q0_t:
+            "Как работают локальные ИИ модели без интернета?",
+
+        q0_a:
+            "Siri поддерживает загрузку компактных языковых моделей непосредственно на устройство. Обработка происходит локально без подключения к сети.",
+
+        q1_t:
+            "Как назначить Siri помощником по умолчанию?",
+
+        q1_a:
+            "Перейдите в Настройки Android → Приложения → Приложения по умолчанию → Цифровой помощник и выберите Siri.",
+
+        q2_t:
+            "Работает ли Siri без интернета?",
+
+        q2_a:
+            "Да. При использовании локальной модели обработка запросов выполняется непосредственно на смартфоне.",
+
+        q3_t:
+            "Где взять API ключ для облачных моделей?",
+
+        q3_a:
+            "Можно использовать совместимый ключ OpenAI, Gemini, Groq или OpenRouter. Ключ и адрес API указываются в настройках приложения.",
+
+        q4_t:
+            "Как создать изображение?",
+
+        q4_a:
+            "Введите описание изображения или используйте команду /image в диалоге.",
+
+        cta_title:
+            "Установите Siri на Android",
+
+        cta_desc:
+            "Скачайте установочный APK-пакет."
+    },
+
+    en: {
+        dl_btn: "Download",
+
+        hero_tag: "Siri for Android",
+        hero_h1: "Siri. Now on Android.",
+        hero_sub:
+            "A personal assistant with native device integration, on-device AI models and image generation.",
+
+        btn_dl_apk: "Download APK",
+        btn_faq: "FAQ",
+
+        feat_tag: "Features",
+        feat_heading: "Control and Privacy",
+
+        f1_title: "On-Device AI Models",
+        f1_desc:
+            "Siri supports local language models running directly on your phone without sending data to the cloud.",
+
+        f2_title: "Works Offline",
+        f2_desc:
+            "Local Siri features remain available even without an internet connection.",
+
+        f3_title: "Image Generation",
+        f3_desc:
+            "Create images from text descriptions or use the /image command directly in chat.",
+
+        f4_title: "Conversation History & Search",
+        f4_desc:
+            "Organize conversations by date, switch between views and quickly search your history.",
+
+        spec_tag: "Specifications",
+        spec_heading: "Phone Requirements",
+
+        sp_os_k: "Operating System",
+        sp_os_v: "Android 10 or later (API 29+)",
+
+        sp_ram_k: "System RAM",
+        sp_ram_v: "3 GB (4+ GB for local AI models)",
+
+        sp_local_k: "Local AI Models",
+        sp_local_v: "Supported",
+
+        sp_net_k: "Internet",
+        sp_net_v:
+            "Required for cloud APIs and image generation",
+
+        sp_api_k: "API Key",
+        sp_api_v:
+            "OpenAI / Gemini / Groq compatible, optional",
+
+        faq_heading: "Frequently Asked Questions",
+
+        q0_t:
+            "How do local AI models work offline?",
+
+        q0_a:
+            "Siri can load compact language models directly onto your device and process requests locally without an internet connection.",
+
+        q1_t:
+            "How do I set Siri as the default assistant?",
+
+        q1_a:
+            "Go to Android Settings → Apps → Default Apps → Digital Assistant and select Siri.",
+
+        q2_t:
+            "Does Siri work without internet?",
+
+        q2_a:
+            "Yes. When using a local model, requests are processed directly on your smartphone.",
+
+        q3_t:
+            "Where can I get an API key?",
+
+        q3_a:
+            "You can use a compatible OpenAI, Gemini, Groq or OpenRouter API key and configure it in the app settings.",
+
+        q4_t:
+            "How do I create an image?",
+
+        q4_a:
+            "Enter an image description or use the /image command in chat.",
+
+        cta_title:
+            "Get Siri on Android",
+
+        cta_desc:
+            "Download the APK package."
+    }
+
+};
+
+function switchLanguage(lang) {
+
+    const data =
+        translations[lang] ||
+        translations.en;
+
+    document
+        .querySelectorAll("[data-i18n]")
+        .forEach((element) => {
+
+            const key =
+                element.getAttribute("data-i18n");
+
+            if (data[key]) {
+                element.textContent = data[key];
+            }
+
+        });
+
+    document.documentElement.lang = lang;
+
+    const isRtl =
+        lang === "ar";
+
+    document.documentElement.dir =
+        isRtl ? "rtl" : "ltr";
+
+    localStorage.setItem(
+        "siri_selected_lang",
+        lang
+    );
+}
+
+function toggleColorTheme() {
+
+    const current =
+        document.documentElement.getAttribute("data-theme") === "dark"
+            ? "light"
+            : "dark";
+
+    document.documentElement.setAttribute(
+        "data-theme",
+        current
+    );
+
+    localStorage.setItem(
+        "siri_selected_theme",
+        current
+    );
+
+    updateThemeSvg(current);
+}
+
+function updateThemeSvg(theme) {
+
+    const svg =
+        document.getElementById("themeSvg");
+
+    if (!svg) return;
+
+    if (theme === "light") {
+
+        svg.innerHTML = `
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/>
+            <line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/>
+            <line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        `;
+
+    } else {
+
+        svg.innerHTML = `
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        `;
+
+    }
+}
+
+function toggleFaqCard(button) {
+
+    const card =
+        button.closest(".faq-card");
+
+    const wasOpen =
+        card.classList.contains("open");
+
+    document
+        .querySelectorAll(".faq-card.open")
+        .forEach((item) => {
+            item.classList.remove("open");
+        });
+
+    if (!wasOpen) {
+        card.classList.add("open");
+    }
+}
+
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+        const theme =
+            localStorage.getItem(
+                "siri_selected_theme"
+            ) || "dark";
+
+        document.documentElement.setAttribute(
+            "data-theme",
+            theme
+        );
+
+        updateThemeSvg(theme);
+
+        const lang =
+            localStorage.getItem(
+                "siri_selected_lang"
+            ) || "ru";
+
+        const langSelect =
+            document.getElementById(
+                "langSelect"
+            );
+
+        if (langSelect) {
+            langSelect.value = lang;
+        }
+
+        switchLanguage(lang);
+    }
+);
+
+</script>
+
+</body>
+</html>
